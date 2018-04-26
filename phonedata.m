@@ -18,7 +18,7 @@ pause(0.2);
 while(1)
     fileID = fopen('outfile.txt','w');
     %report out angular velocity
-    angvel = (angvellog(m))
+    angvel = (angvellog(m));
     %n = length(angvel);
     angvel = angvel(end,1) + ", " + angvel(end,2) + ", " + angvel(end,3);
     %angvel = mean(angvel,1);
@@ -27,11 +27,11 @@ while(1)
     orient_avg = orientlog(m);
     %orient_avg = mean(orient_avg,1);
     %orient_avg = orient_avg(:,end);
-    orient_avg = orient_avg(end,1) + ", " + orient_avg(end,2) + ", " + orient_avg(end,3);
+    orient_avg = orient_avg(end,1) + ", " + orient_avg(end,2) + ", " + orient_avg(end,3)
 %     fprintf(fileID,'%s\n',orient_avg);
     accel = accellog(m);
 %     accellog_small = accellog(1:10:end);
-    acceldev = std(accel)
+    acceldev = std(accel);
     accelprint = accel(end,1) + ", " + accel(end,2) + ", " + accel(end,3);    %generate string format for printing
     acceldev = acceldev(1) + ", " + acceldev(2) + ", " + acceldev(3);
     writeline = orient_avg + " | " + angvel + " | " + acceldev;

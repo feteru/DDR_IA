@@ -33,7 +33,7 @@ float[] old_position_quad = {462,562,
                             462,462};
                             
 float[] old_position_cube = {50, 50, 50};
-int[] fillColor = {0,0,0};
+int[] fillColor = {250,250,250};
 void draw() {
   
   reader = createReader(inputFileName);  //open file to read

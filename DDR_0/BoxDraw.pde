@@ -37,6 +37,9 @@ class BoxDraw {
       //old_position_cube[0] += abs(accdims[0]);
       //old_position_cube[1] += abs(accdims[1]);
       //old_position_cube[2] += abs(accdims[2]);
+      
+      //use orientation to control the size of the cube
+      //x = azimuth, y = pitch, z = roll
       old_position_cube[0] -= abs(oredims[0]/10);
       old_position_cube[1] -= abs(oredims[1]/10);
       old_position_cube[2] -= abs(oredims[2]/100);
@@ -45,19 +48,19 @@ class BoxDraw {
     if(fillColor[0] < 255){
       fillColor[0] += int(accdims[0]*10);
     }
-    else{
+    else if (fillColor[0] > 255){
       fillColor[0] -= int(accdims[0]*10);
     }
     if(fillColor[1] < 255){
       fillColor[1] += int(accdims[1]*10);
     }
-    else{
+    else if (fillColor[1] > 255){
       fillColor[1] -= int(accdims[1]*10);
     }
     if(fillColor[2] < 255){
       fillColor[2] += int(accdims[2]*10);
     }
-    else{
+    else if (fillColor[2] > 255){
       fillColor[2] -= int(accdims[2]*10);
     }
 
