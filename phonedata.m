@@ -32,8 +32,9 @@ while(1)
     accel = accellog(m);
 %     accellog_small = accellog(1:10:end);
     acceldev = std(accel)
-    accel = accel(end,1) + ", " + accel(end,2) + ", " + accel(end,3);    %generate string format for printing
-    writeline = orient_avg + " | " + accel;
+    accelprint = accel(end,1) + ", " + accel(end,2) + ", " + accel(end,3);    %generate string format for printing
+    acceldev = acceldev(1) + ", " + acceldev(2) + ", " + acceldev(3);
+    writeline = orient_avg + " | " + accelprint + " | " + acceldev;
     fprintf(fileID,'%s\n',writeline);   %write to file
     fclose(fileID);
     pause(0.05);

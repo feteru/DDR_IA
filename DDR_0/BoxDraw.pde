@@ -43,9 +43,9 @@ class BoxDraw {
 
     }
     
-    fillColor[0] += int(accdims[0]) -1;
-    fillColor[1] += int(accdims[1]) -1;
-    fillColor[2] += int(accdims[2]) -1;
+    fillColor[0] += int(accdims[0]);
+    fillColor[1] += int(accdims[1]);
+    fillColor[2] += int(accdims[2]);
     fill(fillColor[0],fillColor[1],fillColor[2]);
     
     box(old_position_cube[0]%height*2, old_position_cube[1]%width*2, old_position_cube[2]%height*2);
