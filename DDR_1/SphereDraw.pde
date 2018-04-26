@@ -1,49 +1,33 @@
 class SphereDraw {
 
   float[] drawSphere(float[] accdims, float[] oredims, float[] old_position_sphere) {
-    //define the changes to old position, aka just opsition
-    //float[] new position = new float[4];  //establish variable for new position
+   
     //x & y accel average
     float accavg = ((accdims[0] + accdims[1]) / 2) * 10;  //average x and y accelerations, just because
-    accdims[2] = accdims[2] * 10;
+    //accdims[2] = accdims[2] * 10;
     
-    old_position_sphere[2] = old_position_sphere[2] + oredims[1]*accdims[1];
+    float x_pos = oredims[0]; // roll
+    float y_pos = oredims[1];  // pitch
+    float x_accel = accdims[0]; // left/right
+    float y_accel = accdims[1];  // up/down
+    float z_accel = accdims[2];  // forward/back
     
     
-    if (accdims[0] > 0) {
-      old_position_quad[2] = old_position_quad[2] + accavg;
-      old_position_quad[4] = old_position_quad[4] + accavg;
-    }
-    if (accavg < 0) {
-      old_position_quad[0] = old_position_quad[0] + accavg;
-      old_position_quad[6] = old_position_quad[6] + accavg;
-    }
 
-    if (accdims[2] > 0) {
-      old_position_quad[21] = old_position_quad[1] + accdims[2];
-      old_position_quad[3] = old_position_quad[3] + accdims[2];
+    if (x_accel < 0) { // if x_accel is negative, x_accel is unit acceleration
+      x_accel = 1; 
     }
-    if (accdims[2] < 0) {
-      old_position_quad[5] = old_position_quad[5] + accdims[2];
-      old_position_quad[7] = old_position_quad[7] + accdims[2];
-    }
-    quad(old_position_quad[0], old_position_quad[1], 
-      old_position_quad[2], old_position_quad[3], 
-      old_position_quad[4], old_position_quad[5], 
-      old_position_quad[6], old_position_quad[7]);
+    
+    // move x position wrt width, speed up if accelerating
+    old_position_sphere[0] = old_position_sphere[0] + (width/10)*x_pos*x_accel;
+    
+    // move y position wrt width, speed up if accelerating
+    old_position_sphere[1] = old_position_sphere[1] + (height/10)*y_pos*y_accel;
+        
+    // adjust radius of the sphere
+    old_position_sphere[2] = old_position_sphere[2] + (0.5*width*height/10)*accavg*z_accel;
 
-    return old_position_quad;
+    return old_position_sphere;
   }
 
-  float[] cubeDraw(float[] accdims, float[] oredims, float[] old_position_cube) {
-    //draw a 3d cube and alter the dimensions based on the inputs.
-    if(old_position_cube.length == 3) {
-      old_position_cube[0] += abs(accdims[0]);
-      old_position_cube[1] += abs(accdims[1]);
-      old_position_cube[2] += abs(accdims[2]);
-    }
-    //fill(204,102,0);
-    box(old_position_cube[0]%height, old_position_cube[1]%width, old_position_cube[2]%height);
-    return old_position_cube;
-  }
-}s
+}

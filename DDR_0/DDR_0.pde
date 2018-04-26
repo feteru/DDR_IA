@@ -20,7 +20,7 @@ String[] orelines;
 //current acceleration.orientation vectors
 float[] accdims = new float[2];
 float[] oredims = new float[2];
-
+float[] acceldev = new float[2];
 //old position value, default to middle.
 //float[] old_position = {(width/2) - 50,(height/2) + 50, 
 //                        (width/2) + 50, (height/2) + 50,
@@ -32,7 +32,7 @@ float[] old_position_quad = {462,562,
                             462,462};
                             
 float[] old_position_cube = {50, 50, 50};
-int[] fillColor = {255,255,255};
+int[] fillColor = {0,0,0};
 void draw() {
   
   reader = createReader(inputFileName);  //open file to read
@@ -48,11 +48,12 @@ void draw() {
     String[] instanceData = split(inputStr, "|");  //data from instance of input
     oredims = float(split(instanceData[0],','));
     accdims = float(split(instanceData[1],','));
+    acceldev = float(split(instanceData[2],','));
     System.out.println(inputStr); //<>//
     //draw box
     //old_position_quad = boxDraw.drawBox(accdims, oredims, old_position_quad);
     //lights();
-    old_position_cube = boxDraw.cubeDraw(accdims, oredims, old_position_cube, fillColor);
+    old_position_cube = boxDraw.cubeDraw(acceldev, oredims, old_position_cube, fillColor);
   }
   else {
     System.out.println("inputStr null");

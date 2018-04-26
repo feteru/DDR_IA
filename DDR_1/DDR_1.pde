@@ -23,18 +23,9 @@ String[] orelines;
 float[] accdims = new float[2];
 float[] oredims = new float[2];
 
-//old position value, default to middle.
-//float[] old_position = {(width/2) - 50,(height/2) + 50, 
-//                        (width/2) + 50, (height/2) + 50,
-//                        (width/2 + 50), (height/2) -50,
-//                        (width/2 - 50), (height/2) -50};
-float[] old_position_quad = {462,562,
-                            562,562,
-                            562,462,
-                            462,462};
-
-float[] old_position_cube = {50, 50, 50};
-float[] old_position_sphere = {50, 50, 50};
+// default sphere position: start in center of screen
+//float[] old_position_cube = {50, 50, 50};
+float[] cur_sphere_position = {width/2, height/2, 50}; // x, y, radius
 
 
 void draw() {
@@ -53,17 +44,21 @@ void draw() {
     oredims = float(split(instanceData[0],','));
     accdims = float(split(instanceData[1],','));
     System.out.println(inputStr); //<>//
+  
     //draw sphere
     noStroke();
     lights();
-    translate(width/2,height/5);
-    sphere(50);
-    old_position_sphere =  sphereDraw.drawSphere(accdims,oredims,old_position_sphere);
-    //old_position_cube = boxDraw.cubeDraw(accdims,oredims,old_position_cube);
+  
+    // sphere position
+    translate(cur_sphere_position[0],cur_sphere_position[1]);
+    sphere(cur_sphere_position[2]); //sphere radius
+    
+    cur_sphere_position =  sphereDraw.drawSphere(accdims,oredims,cur_sphere_position);
+   
   }
   else {
     System.out.println("inputStr null");
-    //old_position_cube = boxDraw.cubeDraw(accdims,oredims,old_position_cube);
+  //TODO some default movement
 
   }
   
