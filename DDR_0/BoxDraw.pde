@@ -16,7 +16,7 @@ class BoxDraw {
     }
 
     if (accdims[2] > 0) {
-      old_position_quad[21] = old_position_quad[1] + accdims[2];
+      old_position_quad[1] = old_position_quad[1] + accdims[2];
       old_position_quad[3] = old_position_quad[3] + accdims[2];
     }
     if (accdims[2] < 0) {
@@ -31,15 +31,24 @@ class BoxDraw {
     return old_position_quad;
   }
 
-  float[] cubeDraw(float[] accdims, float[] oredims, float[] old_position_cube) {
+  float[] cubeDraw(float[] accdims, float[] oredims, float[] old_position_cube, int[] fillColor) {
     //draw a 3d cube and alter the dimensions based on the inputs.
     if(old_position_cube.length == 3) {
-      old_position_cube[0] += abs(accdims[0]);
-      old_position_cube[1] += abs(accdims[1]);
-      old_position_cube[2] += abs(accdims[2]);
+      //old_position_cube[0] += abs(accdims[0]);
+      //old_position_cube[1] += abs(accdims[1]);
+      //old_position_cube[2] += abs(accdims[2]);
+      old_position_cube[0] += abs(oredims[0]/10);
+      old_position_cube[1] += abs(oredims[1]/10);
+      old_position_cube[2] += abs(oredims[2]/10);
+
     }
-    //fill(204,102,0);
-    box(old_position_cube[0]%height, old_position_cube[1]%width, old_position_cube[2]%height);
+    
+    fillColor[0] += int(accdims[0]) -1;
+    fillColor[1] += int(accdims[1]) -1;
+    fillColor[2] += int(accdims[2]) -1;
+    fill(fillColor[0],fillColor[1],fillColor[2]);
+    
+    box(old_position_cube[0]%height*2, old_position_cube[1]%width*2, old_position_cube[2]%height*2);
     return old_position_cube;
   }
 }

@@ -1,7 +1,7 @@
 void setup() {
  // size(512, 512); // arcs
- //size(1024, 1024,P3D); //triangles
-  fullScreen(P3D);
+ size(1024, 1024,P3D); //triangles
+  //fullScreen(P3D);
   background(0);
 }
 //*********************
@@ -15,7 +15,7 @@ String inputFileName = "../outfile.txt";
 BufferedReader reader;
 String inputStr; //reads .txt file input
 String[] acclines; //reads input file, 1d array
-String[] orelines; 
+String[] orelines;
 
 //current acceleration.orientation vectors
 float[] accdims = new float[2];
@@ -30,8 +30,9 @@ float[] old_position_quad = {462,562,
                             562,562,
                             562,462,
                             462,462};
+                            
 float[] old_position_cube = {50, 50, 50};
-
+int[] fillColor = {255,255,255};
 void draw() {
   
   reader = createReader(inputFileName);  //open file to read
@@ -50,7 +51,8 @@ void draw() {
     System.out.println(inputStr); //<>//
     //draw box
     //old_position_quad = boxDraw.drawBox(accdims, oredims, old_position_quad);
-    old_position_cube = boxDraw.cubeDraw(accdims,oredims,old_position_cube);
+    //lights();
+    old_position_cube = boxDraw.cubeDraw(accdims, oredims, old_position_cube, fillColor);
   }
   else {
     System.out.println("inputStr null");
