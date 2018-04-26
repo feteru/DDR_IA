@@ -28,7 +28,6 @@ class SphereDraw {
     old_position_sphere[2] = old_position_sphere[2] + (0.5*width*height/10)*accavg*z_accel;
 
     return old_position_sphere;
-    
   }
 
 }
