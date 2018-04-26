@@ -37,18 +37,35 @@ class BoxDraw {
       //old_position_cube[0] += abs(accdims[0]);
       //old_position_cube[1] += abs(accdims[1]);
       //old_position_cube[2] += abs(accdims[2]);
-      old_position_cube[0] += abs(oredims[0]/10);
-      old_position_cube[1] += abs(oredims[1]/10);
-      old_position_cube[2] += abs(oredims[2]/10);
+      old_position_cube[0] -= abs(oredims[0]/10);
+      old_position_cube[1] -= abs(oredims[1]/10);
+      old_position_cube[2] -= abs(oredims[2]/100);
 
     }
-    
-    fillColor[0] += int(accdims[0]);
-    fillColor[1] += int(accdims[1]);
-    fillColor[2] += int(accdims[2]);
+    if(fillColor[0] < 255){
+      fillColor[0] += int(accdims[0]*10);
+    }
+    else{
+      fillColor[0] -= int(accdims[0]*10);
+    }
+    if(fillColor[1] < 255){
+      fillColor[1] += int(accdims[1]*10);
+    }
+    else{
+      fillColor[1] -= int(accdims[1]*10);
+    }
+    if(fillColor[2] < 255){
+      fillColor[2] += int(accdims[2]*10);
+    }
+    else{
+      fillColor[2] -= int(accdims[2]*10);
+    }
+
+    //fillColor[1] += int(accdims[1]*10);
+    //fillColor[2] += int(accdims[2]*10);
+    translate(oredims[1], oredims[2]);
     fill(fillColor[0],fillColor[1],fillColor[2]);
-    
-    box(old_position_cube[0]%height*2, old_position_cube[1]%width*2, old_position_cube[2]%height*2);
+    box(old_position_cube[0]%height, old_position_cube[1]%width, old_position_cube[2]%height);
     return old_position_cube;
   }
 }

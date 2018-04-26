@@ -1,7 +1,8 @@
 void setup() {
  // size(512, 512); // arcs
- size(1024, 1024,P3D); //triangles
-  //fullScreen(P3D);
+ //size(1024, 1024,P3D); //triangles
+//  translate(width/2,height/2);
+  fullScreen(P3D);
   background(0);
 }
 //*********************
@@ -53,7 +54,9 @@ void draw() {
     //draw box
     //old_position_quad = boxDraw.drawBox(accdims, oredims, old_position_quad);
     //lights();
-    old_position_cube = boxDraw.cubeDraw(acceldev, oredims, old_position_cube, fillColor);
+    translate(width/2,height/2);
+    old_position_cube = boxDraw.cubeDraw(accdims, oredims, old_position_cube, fillColor);
+    
   }
   else {
     System.out.println("inputStr null");

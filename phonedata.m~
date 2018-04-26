@@ -20,7 +20,7 @@ while(1)
     %report out angular velocity
     angvel = (angvellog(m))
     %n = length(angvel);
-    angvel = angvel(end,1) + ", " + angvel(end,2) + ", " + angvel(end,3);
+    angvel = angvel(n,1) + ", " + angvel(n,2) + ", " + angvel(n,3);
     %angvel = mean(angvel,1);
     %fprintf(fileID,'%s\n',angvel);
     %print out orientation
@@ -34,7 +34,7 @@ while(1)
     acceldev = std(accel)
     accelprint = accel(end,1) + ", " + accel(end,2) + ", " + accel(end,3);    %generate string format for printing
     acceldev = acceldev(1) + ", " + acceldev(2) + ", " + acceldev(3);
-    writeline = orient_avg + " | " + angvel + " | " + acceldev;
+    writeline = orient_avg + " | " + accelprint + " | " + acceldev;
     fprintf(fileID,'%s\n',writeline);   %write to file
     fclose(fileID);
     pause(0.05);
