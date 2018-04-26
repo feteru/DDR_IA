@@ -4,6 +4,8 @@ void setup() {
 //  translate(width/2,height/2);
  // fullScreen(P3D);
   background(255);
+  //fullScreen(P3D);
+  background(0);
 }
 //*********************
 // INIT VARIABLES 
@@ -33,6 +35,7 @@ float[] old_position_quad = {462,562,
                             462,462};
 int i = 0;  //color increment
 int n = 0; //color slowing increment
+int step_limit = 10; //limit to how many steps to switch colors
 float[] old_position_cube = {50, 50, 50, i};  //cube position aaaand increment
 
 int[] fillColor = {250,250,250};
@@ -52,6 +55,10 @@ int[][] colorList = {{0,255,197}, //lime green
                     {229,224,89}, //puke MIGHT TAKE OUT
 };
 
+                            
+//float[] old_position_cube = {50, 50, 50};
+//int[] fillColor = {0,0,0};
+
 void draw() {
   
   reader = createReader(inputFileName);  //open file to read
@@ -63,15 +70,15 @@ void draw() {
     //e.printStackTrace();
   }
   
-  if(n<10){
+  if(n<step_limit){
     n += 1;
   }
-  else if(n==10){
+  else if(n==step_limit){
     n = 0;
-    if(i<12){
+    if(i<11){
       i += 1;
     }
-    else if(i==12){
+    else if(i==11){
       i = 0;
     }
   }
@@ -81,15 +88,16 @@ void draw() {
     String[] instanceData = split(inputStr, "|");  //data from instance of input
     oredims = float(split(instanceData[0],','));
     accdims = float(split(instanceData[1],','));
-    acceldev = float(split(instanceData[2],','));
+    acceldev = float(split(instanceData[2],',')); //<>//
     System.out.println(inputStr);
     //draw box
     //old_position_quad = boxDraw.drawBox(accdims, oredims, old_position_quad);
     //lights();
     translate(width/2,height/2);
     
-    old_position_cube = boxDraw.cubeDrawList(accdims, oredims, old_position_cube, colorList, i); //<>//
+    old_position_cube = boxDraw.cubeDrawList(accdims, oredims, old_position_cube, colorList, i, n); //<>//
     //i = int(old_position_cube[3]);
+    //old_position_cube = boxDraw.cubeDraw(acceldev, oredims, old_position_cube, fillColor);
   }
   else {
     System.out.println("inputStr null");
