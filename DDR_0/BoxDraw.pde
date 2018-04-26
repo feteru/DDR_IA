@@ -71,4 +71,35 @@ class BoxDraw {
     box(old_position_cube[0]%height, old_position_cube[1]%width, old_position_cube[2]%height);
     return old_position_cube;
   }
+  
+  
+  float[] cubeDrawList(float[] accdims, float[] oredims, float[] old_position_cube, int[][] colorList, int i) {
+    //draw a 3d cube and alter the dimensions based on the inputs.
+    if(old_position_cube.length == 4) {
+      //old_position_cube[0] += abs(accdims[0]);
+      //old_position_cube[1] += abs(accdims[1]);
+      //old_position_cube[2] += abs(accdims[2]);
+      
+      //use orientation to control the size of the cube
+      //x = azimuth, y = pitch, z = roll
+      old_position_cube[0] -= abs(oredims[0]/10);
+      old_position_cube[1] -= abs(oredims[1]/10);
+      old_position_cube[2] -= abs(oredims[2]/100);
+      //i = int(old_position_cube[3]);
+
+    }
+
+    //fillColor[1] += int(accdims[1]*10);
+    //fillColor[2] += int(accdims[2]*10);
+    translate(oredims[1], oredims[2]);
+    fill(colorList[i][0],colorList[i][1],colorList[i][2]);
+    box(old_position_cube[0]%(height/2), old_position_cube[1]%(width/2), old_position_cube[2]%(height/2));
+    //deal with incrementation
+    //if(i<12){
+    //  i += 1;
+    //}
+    //else{ i = 0;}
+    //old_position_cube[3] = i;
+    return old_position_cube;
+  }
 }

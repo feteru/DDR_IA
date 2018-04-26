@@ -27,7 +27,7 @@ while(1)
     orient_avg = orientlog(m);
     %orient_avg = mean(orient_avg,1);
     %orient_avg = orient_avg(:,end);
-    orient_avg = orient_avg(end,1) + ", " + orient_avg(end,2) + ", " + orient_avg(end,3)
+    orient_avg = orient_avg(end,1) + ", " + orient_avg(end,2) + ", " + orient_avg(end,3);
 %     fprintf(fileID,'%s\n',orient_avg);
     accel = accellog(m);
 %     accellog_small = accellog(1:10:end);
