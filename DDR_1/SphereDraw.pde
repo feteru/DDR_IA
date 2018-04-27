@@ -17,17 +17,21 @@ class SphereDraw {
     if (x_accel < 0) { // if x_accel is negative, x_accel is unit acceleration
       x_accel = 1; 
     }
+        if (y_accel < 0) { // if x_accel is negative, x_accel is unit acceleration
+      y_accel = 1; 
+    }
     
     // move x position wrt width, speed up if accelerating
-    old_position_sphere[0] = old_position_sphere[0] + (width/10)*x_pos*x_accel;
+    old_position_sphere[0] = (old_position_sphere[0] + (width/10)*(x_pos/176)*(x_accel/18))%width; // x_accel = [-18.9, 16.8], x_pos = [-176, 179], 
     
     // move y position wrt width, speed up if accelerating
-    old_position_sphere[1] = old_position_sphere[1] + (height/10)*y_pos*y_accel;
+    old_position_sphere[1] = (old_position_sphere[1] + (height/10)*(y_pos/75)*(y_accel/19))%height; //
         
     // adjust radius of the sphere
     old_position_sphere[2] = old_position_sphere[2] + (0.5*width*height/10)*accavg*z_accel;
 
     return old_position_sphere;
   }
-
+//phonedata
+// connector on
 }
