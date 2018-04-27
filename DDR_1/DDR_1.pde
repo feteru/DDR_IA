@@ -11,7 +11,7 @@ void setup() {
 SphereDraw sphereDraw = new SphereDraw();
 
 
-String inputFileName = "../outfile.txt";
+String inputFileName = "../phat_outfile.txt";
 
 //file obj to read from
 BufferedReader reader;
@@ -20,8 +20,8 @@ String[] acclines; //reads input file, 1d array
 String[] orelines; 
 
 //current acceleration.orientation vectors
-float[] accdims = new float[2];
-float[] oredims = new float[2];
+float[] accdims = new float[3];
+float[] oredims = new float[3];
 
 // default sphere position: start in center of screen
 //float[] old_position_cube = {50, 50, 50};
